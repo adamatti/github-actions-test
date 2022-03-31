@@ -17,8 +17,8 @@ jobs:
           echo "//npm.pkg.github.com/:_authToken=${NPM_AUTH_TOKEN}\n@demandio:registry=${NPM_REGISTRY_URL}" > ~/.npmrc
           npm install -g yarn && yarn
         env:
-          NPM_REGISTRY_URL: ${{ secrets.NPM_REGISTRY_URL }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NPM_REGISTRY_URL: '${{ secrets.NPM_REGISTRY_URL }}'
+          NPM_AUTH_TOKEN: '${{ secrets.NPM_AUTH_TOKEN }}'
       - name: Lint        
         run: yarn lint
       - name: Test
