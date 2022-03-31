@@ -1,5 +1,5 @@
-describe("app", ()=> {
-  it("sum", ()=> {
+describe('app', ()=> {
+  it('sum', ()=> {
     expect(1+1).toBe(2);
-  })
-})
+  });
+});
