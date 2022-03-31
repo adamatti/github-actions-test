@@ -4,6 +4,7 @@ on: [push]
 jobs:
   checks:
     runs-on: ubuntu-latest
+    environment: test
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -15,8 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           echo "//npm.pkg.github.com/:_authToken=${NPM_AUTH_TOKEN}\n@demandio:registry=${NPM_REGISTRY_URL}" > ~/.npmrc
-          npm install -g yarn && yarn
-        environment: test
+          npm install -g yarn && yarn        
         env:
           NPM_REGISTRY_URL: ${{ secrets.NPM_REGISTRY_URL }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
