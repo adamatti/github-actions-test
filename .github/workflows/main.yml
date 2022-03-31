@@ -4,7 +4,6 @@ on: [push]
 env:
   NPM_REGISTRY_URL: ${{ secrets.NPM_REGISTRY_URL }}
   NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-  FAKE_VAR: ${{ secrets.FAKE_VAR }}
 
 jobs:
   checks:
@@ -17,11 +16,10 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - name: debug vars
-        run: |
-          echo "$FAKE_VAR"
       - name: Install dependencies
-        run: npm install -g yarn && yarn        
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${NPM_AUTH_TOKEN}\n@demandio:registry=${NPM_REGISTRY_URL}" > ~/.npmrc
+          npm install -g yarn && yarn
       - name: Lint        
         run: yarn lint
       - name: Test
